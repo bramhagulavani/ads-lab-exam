@@ -67,7 +67,24 @@ int main()
     inorder(root);
     return 0;
 }
-- `
+`,
+    algorithm: `Algorithm: Right Threaded Binary Tree - In-order Traversal
+
+Step 1: Create a Node structure with data, left/right pointers, and rightThread flag
+Step 2: Implement createNode() to allocate memory and initialize node with rightThread = 0
+Step 3: Implement leftMost() to find the leftmost node by traversing left pointers
+Step 4: In inorder() traverse function:
+  - Start from leftmost node of root
+  - Print current node's data
+  - If rightThread is 1, move directly to right pointer (thread)
+  - If rightThread is 0, find leftmost node of right subtree
+  - Continue until current node becomes NULL
+Step 5: Create sample tree and set up threading pointers between nodes
+Step 6: Call inorder() to display traversal
+
+Time Complexity: O(n) where n is number of nodes
+Space Complexity: O(1) since no stack or recursion is used
+`
   },
   {
     id: 2,
@@ -136,7 +153,25 @@ int main()
     preorder(root);
     return 0;
 }
-- `
+`,
+    algorithm: `Algorithm: Right Threaded Binary Tree - Preorder Traversal
+
+Step 1: Create Node structure with data, left/right pointers, and rightThread flag
+Step 2: Implement createNode() to allocate memory and initialize node
+Step 3: In preorder() traversal function:
+  - Start from root node
+  - Print current node's data
+  - If left child exists, move to left child
+  - If no left child, follow thread pointers:
+    - While rightThread is 1 (indicating thread), move right
+    - If rightThread is 0, move to right child (actual tree node)
+  - Continue until current node becomes NULL
+Step 4: Set up threading relationships between nodes
+Step 5: Execute preorder() to display nodes in preorder sequence
+
+Time Complexity: O(n) where n is number of nodes
+Space Complexity: O(1) with no external stack or recursion
+`
   },
   {
     id: 3,
@@ -195,7 +230,24 @@ int main()
     preorder(root);
     return 0;
 }
-- `
+`,
+    algorithm: `Algorithm: Left Threaded Binary Tree - Preorder Traversal
+
+Step 1: Create Node structure with data, left/right pointers, and leftThread flag
+Step 2: Implement createNode() to allocate memory and initialize node with leftThread = 0
+Step 3: In preorder() traversal function:
+  - Start from root node
+  - Print current node's data
+  - Check left child pointer:
+    - If left child exists AND leftThread is 0 (not a thread), move to left child
+    - If left child is NULL or leftThread is 1 (thread), move to right child
+  - Continue until current node becomes NULL
+Step 4: Set up left threading pointers to predecessor nodes
+Step 5: Execute preorder() to display traversal
+
+Time Complexity: O(n) where n is number of nodes
+Space Complexity: O(1) as no stack or recursion is used
+`
   },
   {
     id: 4,
@@ -265,7 +317,25 @@ int main()
     inorder(root);
     return 0;
 }
-- `
+`,
+    algorithm: `Algorithm: Right Threaded Binary Tree - In-order with Threading
+
+Step 1: Create Node structure with data, left/right pointers, and rightThread flag
+Step 2: Implement createNode() to allocate memory and initialize with rightThread = 0
+Step 3: Implement leftMost() helper to find leftmost node in a subtree
+Step 4: In inorder() traversal:
+  - Find leftmost node of entire tree
+  - While current node is not NULL:
+    - Print current node's data
+    - If rightThread is 1, follow thread to in-order successor
+    - If rightThread is 0, find leftmost node of right subtree
+  - Continue until all nodes are processed
+Step 5: Manually set right thread pointers to in-order successors
+Step 6: Execute inorder() to display sorted traversal
+
+Time Complexity: O(n) where n is number of nodes
+Space Complexity: O(1) with no recursion or external stack
+`
   },
   {
     id: 5,
@@ -398,7 +468,29 @@ int main()
     inorder(root);
     return 0;
 }
-- `
+`,
+    algorithm: `Algorithm: AVL Tree - Insertion with Self-Balancing
+
+Step 1: Create Node structure with data, left/right pointers, and height field
+Step 2: Implement helper functions:
+  - height() to get node's height (0 if NULL)
+  - getBalance() to calculate balance factor (left height - right height)
+  - leftRotate() and rightRotate() for tree rotations
+Step 3: In insert() function:
+  - If root is NULL, create and return new node
+  - Recursively insert into left or right subtree based on value
+  - Update height of current node
+  - Calculate balance factor
+  - Based on balance factor, perform appropriate rotation:
+    - Balance > 1 (left heavy) and data < left->data: Right rotation (LL case)
+    - Balance < -1 (right heavy) and data > right->data: Left rotation (RR case)
+    - Balance > 1 and data > left->data: Left-Right rotation (LR case)
+    - Balance < -1 and data < right->data: Right-Left rotation (RL case)
+Step 4: Display tree using in-order traversal
+
+Time Complexity: O(log n) for insertion and balancing operations
+Space Complexity: O(log n) for recursion stack
+`
   },
   {
     id: 6,
@@ -535,7 +627,32 @@ int main()
     inorder(root);
     return 0;
 }
-- `
+`,
+    algorithm: `Algorithm: AVL Tree - Insertion and Auto-Balancing
+
+Step 1: Define Node structure with data, left/right children, and height
+Step 2: Implement utility functions:
+  - height() returns node height (0 for NULL)
+  - getBalance() returns balance factor = left height - right height
+  - leftRotate() performs left rotation on subtree
+  - rightRotate() performs right rotation on subtree
+Step 3: In insert() recursive function:
+  - Base case: if root is NULL, create new node with height 1
+  - If data < root->data, insert in left subtree
+  - If data > root->data, insert in right subtree
+  - If data == root->data, return (duplicate)
+  - Update root's height after insertion
+  - Calculate balance factor of current node
+  - Check all 4 cases and perform rotations:
+    - LL Case: balance > 1 and data < left->data → right rotation
+    - RR Case: balance < -1 and data > right->data → left rotation
+    - LR Case: balance > 1 and data > left->data → left on left, right on root
+    - RL Case: balance < -1 and data < right->data → right on right, left on root
+Step 4: Display tree with in-order traversal
+
+Time Complexity: O(log n) per insertion with balancing
+Space Complexity: O(log n) for recursion
+`
   },
   {
     id: 7,
@@ -683,7 +800,25 @@ int main()
     postorder(root);
     return 0;
 }
-- `
+`,
+    algorithm: `Algorithm: AVL Tree - Multiple Traversal Methods
+
+Step 1: Create Node structure with data, left/right pointers, and height
+Step 2: Implement balancing functions:
+  - rightRotate() and leftRotate() for tree rotations
+  - getBalance() to compute balance factor
+Step 3: Implement insert() with automatic balancing:
+  - Standard BST insertion
+  - Update heights and check balance factors
+  - Perform appropriate rotations to maintain AVL property
+Step 4: Implement traversal methods:
+  - preorder(root): print → left → right (root first)
+  - postorder(root): left → right → print (root last)
+Step 5: Insert multiple elements and display using both traversals
+
+Time Complexity: O(log n) for each insertion and balancing
+Space Complexity: O(log n) for recursion stack during traversals
+`
   },
   {
     id: 8,
@@ -860,7 +995,35 @@ int main()
     inorder(root);
     return 0;
 }
-- `
+`,
+    algorithm: `Algorithm: Red-Black Tree - Insertion and Balancing
+
+Step 1: Define Node with data, color (RED/BLACK), left/right pointers, and parent
+Step 2: Implement rotation functions:
+  - leftRotate() rotates left around specified node
+  - rightRotate() rotates right around specified node
+  - Update parent pointers accordingly
+Step 3: In insert() function:
+  - Find correct position using BST search
+  - Create new RED node at leaf position
+  - Link to parent node
+  - Call fixInsert() to fix Red-Black properties
+Step 4: In fixInsert() function:
+  - While temp is not root and parent is RED:
+    - Identify uncle node (parent's sibling)
+    - If uncle is RED: recolor parent, uncle, and grandparent
+    - If uncle is BLACK: perform rotations and recoloring:
+      - LL case: right rotation
+      - RR case: left rotation
+      - LR case: left then right rotation
+      - RL case: right then left rotation
+    - Continue with grandparent as new temp
+  - Ensure root is always BLACK
+Step 5: Display using in-order traversal with node colors
+
+Time Complexity: O(log n) for insertion and fixing
+Space Complexity: O(log n) for recursion in traversal
+`
   },
   {
     id: 9,
@@ -1075,7 +1238,35 @@ int main()
     }
     return 0;
 }
-- `
+`,
+    algorithm: `Algorithm: Red-Black Tree - Menu-Driven Operations
+
+Step 1: Define global root pointer and Node structure with color, parent pointers
+Step 2: Implement helper functions:
+  - createNode() creates RED node
+  - leftRotate() and rightRotate() for tree restructuring
+  - fixInsert() maintains RB properties after insertion
+Step 3: Implement insert(data):
+  - Find insertion position using standard BST search
+  - Create new RED node and link to parent
+  - Call fixInsert() to restore red-black properties
+  - Recoloring and rotations ensure no two RED nodes are adjacent
+Step 4: Implement search(root, key):
+  - Traverse tree using BST search logic
+  - Compare key with current node's data
+  - Go left if key is smaller, right if larger
+  - Return success or failure
+Step 5: Implement inorder() traversal:
+  - Recursively traverse left subtree, print node with color, right subtree
+Step 6: Main menu loop:
+  - Option 1: Insert element with input
+  - Option 2: Search element with input
+  - Option 3: Display tree in inorder with colors
+  - Option 4: Exit program
+
+Time Complexity: O(log n) for insertion, search, and display
+Space Complexity: O(n) for storing n nodes in tree
+`
   },
   {
     id: 10,
@@ -1253,7 +1444,34 @@ int main()
     inorder(root);
     return 0;
 }
-- `
+`,
+    algorithm: `Algorithm: Red-Black Tree - Self-Balancing Insertion
+
+Step 1: Node structure includes: data, color (RED/BLACK), left/right children, parent pointer
+Step 2: Create balanced insertions:
+  - Insert new node as RED in BST position
+  - Update parent pointers for tree structure
+  - Call fixInsert() to maintain RB properties
+Step 3: fixInsert() balancing procedure:
+  - While inserted node is not root and parent is RED:
+    - Locate uncle node (parent's sibling)
+    - Case 1 (Uncle RED): Recolor parent, uncle, grandparent; move up to grandparent
+    - Case 2 & 3 (Uncle BLACK): Perform rotations and recoloring:
+      - If node is right child of left parent: left rotate parent
+      - Make parent BLACK, grandparent RED, right rotate grandparent
+      - Mirror cases for right parent
+    - Continue fixing from grandparent position
+  - Ensure root is always BLACK
+Step 4: Properties maintained:
+  - Root is BLACK
+  - Leaves are BLACK
+  - No RED node has RED child
+  - All paths have equal BLACK count
+Step 5: Display tree in-order showing node colors
+
+Time Complexity: O(log n) for insertion with automatic balancing
+Space Complexity: O(log n) for recursion in traversal, O(n) for tree storage
+`
   },
   {
     id: 11,
@@ -1454,7 +1672,45 @@ int main()
     }
     return 0;
 }
-- `
+`,
+    algorithm: `Algorithm: B-Tree - Menu-Driven Operations (Order 3)
+
+Step 1: Define Node structure:
+  - data[] array of size MAX+1 to store keys
+  - child[] array of pointers to children
+  - count to track number of keys in node
+Step 2: Implement helper functions:
+  - insertNode() inserts key at position pos with child pointer
+  - splitNode() divides a full node when MAX keys exceeded
+  - setValue() recursively finds position and inserts key
+Step 3: Insert operation:
+  - Call setValue() starting from root
+  - If node is NULL, return key and NULL child
+  - Find position: if key < first key, pos=0; else binary search
+  - Recursively insert in child
+  - If returning child, insert key at found position
+  - If node becomes full (count > MAX), call splitNode()
+  - splitNode() moves median key to parent, splits remaining keys to new node
+  - If root is modified, create new root
+Step 4: Search operation:
+  - Start from root
+  - Loop through keys to find insertion position
+  - If key found, return success
+  - Recursively search in appropriate child
+  - If reach NULL, element not found
+Step 5: Traversal (in-order):
+  - For each child pointer: traverse child
+  - Print current key
+  - Continue with next child-key pair
+Step 6: Menu interface:
+  - Option 1: Insert with validation
+  - Option 2: Search with feedback
+  - Option 3: Display all elements
+  - Option 4: Exit program
+
+Time Complexity: O(log n) for insertion, search, and traversal
+Space Complexity: O(n) for storing n keys in tree
+`
   },
   {
     id: 12,
@@ -1610,7 +1866,36 @@ int main()
     display(root, 0);
     return 0;
 }
-- `
+`,
+    algorithm: `Algorithm: B-Tree - Structure Display After Insertion (Order 3)
+
+Step 1: Node structure with:
+  - data[] array for storing keys
+  - child[] array for child pointers
+  - count for number of keys
+Step 2: Insertion process:
+  - Call setValue() recursively to find insertion position
+  - At leaf, if key doesn't exist, return key and NULL child
+  - Propagate back up tree
+  - If node exceeds MAX keys, split the node:
+    - Find median (MIN+1)
+    - Create new node for keys after median
+    - Move median key to parent
+    - Continue with parent insertion
+  - If root splits, create new root with median key
+Step 3: Display function:
+  - Recursive level-order display of tree structure
+  - Print level indicator and all keys at current node
+  - Recursively display all children with incremented level
+  - Shows hierarchical structure of B-Tree
+Step 4: Sequential insertion:
+  - Insert elements: 10, 20, 30, 40, 50
+  - Tree splits nodes as needed to maintain B-Tree properties
+Step 5: Display final tree showing all levels and node contents
+
+Time Complexity: O(n * log n) for inserting n elements
+Space Complexity: O(n) for storing keys in tree structure
+`
   },
   {
     id: 13,
@@ -1767,7 +2052,38 @@ int main()
     inorder(root);
     return 0;
 }
-- `
+`,
+    algorithm: `Algorithm: B-Tree - Creation and In-order Traversal
+
+Step 1: Node structure contains:
+  - data[] array to hold keys (1-indexed)
+  - child[] array of child pointers
+  - count field for number of keys
+Step 2: Insert elements with balancing:
+  - Insert 10, 20, 5, 30, 25
+  - Use setValue() to recursively place each element
+  - Automatically split nodes when count exceeds MAX (3)
+  - Maintain B-Tree properties during insertion
+Step 3: In-order traversal algorithm:
+  - For each node:
+    - Recursively traverse child[0]
+    - Print data[1] (first key)
+    - Recursively traverse child[1]
+    - Print data[2] (second key)
+    - Recursively traverse child[2]
+    - Print data[3] (third key)
+    - Recursively traverse child[3]
+  - Base case: NULL node, return
+  - Result: all elements printed in ascending sorted order
+Step 4: Properties maintained:
+  - All keys in subtree child[i] are between data[i] and data[i+1]
+  - All leaf nodes at same level
+  - Non-root nodes have at least MIN keys
+Step 5: Display traversal output
+
+Time Complexity: O(n) for in-order traversal of n elements
+Space Complexity: O(log n) for recursion stack
+`
   },
   {
     id: 14,
@@ -1936,7 +2252,41 @@ int main()
     search(root, key);
     return 0;
 }
-- `
+`,
+    algorithm: `Algorithm: B-Tree - User-Driven Insertion and Search
+
+Step 1: Define B-Tree Node structure with:
+  - data[] for storing keys
+  - child[] for child node pointers
+  - count for number of keys
+Step 2: Insert function with user input:
+  - Read n (number of elements)
+  - For each element:
+    - Read data value
+    - Call insert() to place in B-Tree
+    - If node exceeds MAX keys, splitNode() divides it
+    - Propagate changes up the tree
+Step 3: insert() operation:
+  - Call setValue() from root recursively
+  - setValue() finds correct position based on key comparison
+  - If node is full, perform split before insertion
+  - Maintain B-Tree invariants:
+    - Keys in sorted order within node
+    - child[i] contains keys between data[i] and data[i+1]
+    - Min MAX/2 - 1 keys in non-root nodes
+Step 4: Search function:
+  - Read key to search
+  - Starting from root, recursively search:
+    - Loop through keys in current node
+    - If key found, print "Element Found"
+    - If key < data[i], search child[i-1]
+    - If no more children and not found, print "Element Not Found"
+  - Time: O(log n) since tree is balanced
+Step 5: Both operations handle duplicates and edge cases
+
+Time Complexity: O(log n) for both insertion and search
+Space Complexity: O(n) for tree nodes
+`
   },
   {
     id: 15,
@@ -2061,7 +2411,44 @@ int main()
     }
     return 0;
 }
-- `
+`,
+    algorithm: `Algorithm: B+ Tree - Menu-Driven Insertion and Search
+
+Step 1: Node structure with:
+  - data[] array for storing keys (0-indexed)
+  - child[] array for child pointers (not used in simple version)
+  - count for number of keys
+  - leaf flag to identify leaf nodes
+Step 2: createNode() function:
+  - Allocate memory for new node
+  - Initialize count to 0
+  - Set leaf flag (1 for leaf, 0 for internal)
+  - Initialize all child pointers to NULL
+Step 3: Insert operation:
+  - If root is NULL, create root as leaf node
+  - Otherwise, insert in sorted order:
+    - Start from last position
+    - Shift elements right if new data is smaller
+    - Insert data at correct position
+    - Increment count
+  - Check for overflow: if count > MAX, print message
+Step 4: Search operation:
+  - If tree is empty, return "Tree Empty"
+  - Loop through all data elements in root
+  - If element found, print "Element Found"
+  - If loop completes without finding, print "Element Not Found"
+Step 5: Display operation:
+  - If tree is empty, print message
+  - Otherwise, print all elements in order
+Step 6: Menu-driven interface:
+  - Option 1: Insert element with input
+  - Option 2: Search element with input and feedback
+  - Option 3: Display all current elements
+  - Option 4: Exit program
+
+Time Complexity: O(n) for simple insertion and search in root
+Space Complexity: O(n) for storing n keys
+`
   },
   {
     id: 16,
@@ -2141,7 +2528,42 @@ int main()
     display();
     return 0;
 }       
-- `
+`,
+    algorithm: `Algorithm: B+ Tree - Multiple Insertions and Display
+
+Step 1: Define simple Node structure with:
+  - data[] array to store keys
+  - count field for number of keys
+Step 2: createNode() function:
+  - Allocate memory for new node
+  - Initialize count to 0
+  - Return newly created node
+Step 3: Main program flow:
+  - Read n (number of keys to insert)
+  - Read each key value
+  - For each key, call insert()
+Step 4: Insert operation:
+  - If root is NULL, create root node as first leaf
+  - Store first key with count = 1
+  - For subsequent keys:
+    - Start from last position (right to left)
+    - Shift elements that are greater than new data
+    - Insert new data at correct position
+    - Increment count
+  - Handle overflow: if count exceeds MAX, print warning
+Step 5: Display function:
+  - Check if tree is empty
+  - If empty, print "Tree Empty"
+  - If not empty, print all keys in sorted order
+  - Print all keys from data array up to count
+Step 6: Sequential insertion:
+  - Insert keys maintaining sorted order
+  - Final tree contains all keys in ascending sequence
+  - Display shows final state of tree
+
+Time Complexity: O(n²) for n insertions (each insertion O(n))
+Space Complexity: O(n) for storing n keys in tree
+`
   },
   {
     id: 17,
@@ -2260,7 +2682,44 @@ int main()
     }
     return 0;
 }
-- `
+`,
+    algorithm: `Algorithm: B+ Tree - Complete Menu-Driven Application
+
+Step 1: Node structure with:
+  - data[] array of size MAX (5) for keys
+  - count field for number of keys
+  - Simple leaf node representation
+Step 2: Helper functions:
+  - createNode() allocates and initializes new node
+Step 3: Insert operation:
+  - If tree is empty, create root and insert first key
+  - For existing tree, find correct position:
+    - Start from rightmost position
+    - Shift elements that are greater than new data
+    - Insert at correct sorted position
+    - Increment count
+  - Check overflow: if count > MAX, print warning
+Step 4: Search operation:
+  - If tree is empty, print "Tree Empty"
+  - Linear search through data array
+  - If found, print "Element Found" and return
+  - If not found after checking all, print "Element Not Found"
+Step 5: Traversal operation:
+  - If tree is empty, print message
+  - Otherwise, print all elements in sorted order
+  - Display traversal of B+ Tree structure
+Step 6: Main menu interface:
+  - Option 1: Insert with user input validation
+  - Option 2: Search with feedback on existence
+  - Option 3: Traverse and display all elements
+  - Option 4: Exit program cleanly
+Step 7: Continuous menu loop:
+  - Repeat until user selects exit
+  - Handle invalid input gracefully
+
+Time Complexity: O(n) per operation (linear search/insertion in simple version)
+Space Complexity: O(n) for storing n keys in tree
+`
   },
   {
     id: 18,
@@ -2331,7 +2790,37 @@ int main()
     display(arr, n);
     return 0;
 }
-- `
+`,
+    algorithm: `Algorithm: Heap Sort using Max Heap
+
+Step 1: Input array of n elements
+Step 2: Build Max Heap:
+  - Start from index n/2 - 1 (last non-leaf node)
+  - Call heapify() for each node going backwards
+  - This ensures parent >= both children (max heap property)
+Step 3: Heapify function for node at index i:
+  - Calculate left child index: 2*i + 1
+  - Calculate right child index: 2*i + 2
+  - Find largest among node, left child, right child
+  - If largest is not current node:
+    - Swap current node with largest
+    - Recursively heapify subtree rooted at largest
+Step 4: Extract elements from heap:
+  - Swap root (maximum) with last element
+  - Reduce heap size by 1
+  - Heapify root to restore max heap property
+  - Repeat until heap size is 1
+Step 5: Result:
+  - Last element (index 0) after swap is smallest
+  - Repeated swaps place elements in ascending order
+  - Final array is sorted in ascending order
+Step 6: Display sorted array
+
+Time Complexity: O(n log n)
+  - Building heap: O(n)
+  - Extracting n elements: O(n log n)
+Space Complexity: O(1) - in-place sorting
+`
   },
   {
     id: 19,
@@ -2440,7 +2929,44 @@ int main()
     }
     return 0;
 }
-- `
+`,
+    algorithm: `Algorithm: Priority Queue - Hospital Patient Management
+
+Step 1: Structure for Patient with name and priority fields
+Step 2: Array-based priority queue:
+  - pq[] array of size MAX (5 patients)
+  - rear pointer to track last patient (-1 when empty)
+Step 3: Insert Patient operation:
+  - Check if queue is full (rear == MAX - 1)
+  - If full, print "Queue Full" and return
+  - Increment rear
+  - Read patient name and priority
+  - Sort entire queue by priority (descending):
+    - Use bubble sort on priority field
+    - Higher priority comes first
+    - Swap patients if needed
+  - Print "Patient Added"
+Step 4: Delete/Serve Patient operation:
+  - Check if queue is empty (rear == -1)
+  - If empty, print "Queue Empty" and return
+  - Print name of first patient (highest priority)
+  - Shift all remaining patients left by 1 position
+  - Decrement rear
+Step 5: Display operation:
+  - Check if queue is empty
+  - If empty, print message
+  - Otherwise, display all patients with priorities:
+    - Highest priority first (sorted order)
+    - Show name and priority for each
+Step 6: Menu-driven interface:
+  - Option 1: Insert new patient
+  - Option 2: Serve (remove) highest priority patient
+  - Option 3: Display all waiting patients
+  - Option 4: Exit program
+
+Time Complexity: O(n²) for insertion (bubble sort), O(n) for deletion
+Space Complexity: O(n) for storing patient records
+`
   },
   {
     id: 20,
@@ -2506,7 +3032,33 @@ int main()
     }
     return 0;
 }
-- `
+`,
+    algorithm: `Algorithm: Dijkstra's Algorithm - Shortest Path using Priority Concept
+
+Step 1: Input graph as adjacency matrix of n vertices
+Step 2: Input source vertex
+Step 3: Initialize arrays:
+  - dist[i] = INF (infinity) for all vertices except source
+  - dist[source] = 0
+  - visited[i] = 0 for all vertices (not visited)
+Step 4: For each of n-1 iterations:
+  - Find unvisited vertex u with minimum distance:
+    - Scan all vertices j where visited[j] == 0
+    - Track minimum distance and corresponding vertex u
+  - Mark u as visited: visited[u] = 1
+  - Update distances of neighbors of u:
+    - For each unvisited vertex j:
+      - If edge exists (graph[u][j] != 0)
+      - And dist[u] + graph[u][j] < dist[j]
+      - Then update dist[j] = dist[u] + graph[u][j]
+Step 5: After n-1 iterations, all shortest paths found:
+  - dist[i] contains shortest distance from source to vertex i
+  - INF indicates unreachable vertices
+Step 6: Display shortest distances from source to all vertices
+
+Time Complexity: O(n²) for adjacency matrix representation
+Space Complexity: O(n²) for graph + O(n) for arrays
+`
   },
   {
     id: 21,
@@ -2602,7 +3154,46 @@ int main()
     prefixMatch(root, "ca");
     return 0;
 }
-- `
+`,
+    algorithm: `Algorithm: Trie Data Structure - Operations
+
+Step 1: TrieNode structure:
+  - child[] array of 26 pointers (for a-z)
+  - endWord flag (1 if word ends here, 0 otherwise)
+Step 2: createNode() function:
+  - Allocate memory for new TrieNode
+  - Initialize all 26 child pointers to NULL
+  - Set endWord to 0
+  - Return newly created node
+Step 3: Insert operation:
+  - Start from root node
+  - For each character in word:
+    - Calculate index: char - 'a' (0-25)
+    - If child[index] is NULL, create new node
+    - Move to child[index]
+  - After processing all characters, set endWord = 1
+  - Marks end of word for distinction from prefix
+Step 4: Search operation:
+  - Start from root node
+  - For each character in word:
+    - Calculate index: char - 'a'
+    - If child[index] is NULL, word not found
+    - Move to child[index]
+  - After processing all characters:
+    - If endWord == 1, word found
+    - If endWord == 0, only prefix exists
+Step 5: Prefix matching operation:
+  - Similar to search but only checks prefix path
+  - If all characters can be followed, prefix exists
+  - Return success without checking endWord
+Step 6: Example operations:
+  - Insert: "cat", "car", "dog"
+  - Search: "cat" (found), "car" (found)
+  - Prefix: "ca" (found in both "cat" and "car")
+
+Time Complexity: O(m) where m is word length for all operations
+Space Complexity: O(n * m) where n words, m average length
+`
   },
   {
     id: 22,
@@ -2665,7 +3256,43 @@ int main()
     patternMatch(str, pattern);
     return 0;
 }
-- `
+`,
+    algorithm: `Algorithm: Suffix Tree - Pattern Matching
+
+Step 1: Input a string
+Step 2: Create all suffixes:
+  - For each position i from 0 to len-1:
+    - Extract substring starting from position i
+    - Store in suffix[i]
+  - Result: array of all possible suffixes
+  - Example for "banana":
+    - suffix[0] = "banana"
+    - suffix[1] = "anana"
+    - suffix[2] = "nana"
+    - suffix[3] = "ana"
+    - suffix[4] = "na"
+    - suffix[5] = "a"
+Step 3: Display all suffixes:
+  - Print each suffix on new line
+  - Shows all suffixes in order
+Step 4: Pattern matching:
+  - Input pattern to search
+  - For each suffix i:
+    - Use strstr() to check if pattern is prefix of suffix[i]
+    - If strstr(suffix[i], pattern) == suffix[i]:
+      - Pattern found at starting position i
+      - Print position and return
+  - If loop completes without match, pattern not found
+Step 5: Key insight:
+  - If pattern exists in string, it will be prefix of some suffix
+  - Pattern at position p will be prefix of suffix starting at p
+  - Example: pattern "ana" is prefix of suffix[3] = "ana"
+Step 6: Display results
+
+Time Complexity: O(n) for suffix creation + O(n * m) for pattern search
+  where n = string length, m = pattern length
+Space Complexity: O(n²) for storing all suffixes
+`
   },
   {
     id: 23,
@@ -2799,7 +3426,49 @@ int main()
     }
     return 0;
 }
-- `
+`,
+    algorithm: `Algorithm: Skip List - Randomized Data Structure
+
+Step 1: Node structure:
+  - data field to store value
+  - forward[] array of MAX_LEVEL+1 pointers (different levels)
+  - Each level is sorted linked list
+Step 2: randomLevel() function:
+  - Generates random level for new node
+  - Coin flip: while random returns true and level < MAX_LEVEL
+  - Higher levels have exponentially fewer nodes
+  - Average: ~50% nodes at level 0, ~25% at level 1, etc.
+Step 3: Insert operation:
+  - Create update[] to track nodes at each level
+  - Traverse from top level down to level 0:
+    - For each level i:
+      - Move right while next node's data < new data
+      - Store node at update[i]
+  - Generate random level for new node
+  - Create new node with data and random level
+  - Link new node at all levels:
+    - For i = 0 to level:
+      - new->forward[i] = update[i]->forward[i]
+      - update[i]->forward[i] = new
+  - Insert in O(log n) expected time
+Step 4: Search operation:
+  - Similar traversal from top to bottom
+  - At level 0, move forward while data < key
+  - Once past key position, move down level
+  - After reaching level 0, check current node
+  - Return found or not found
+Step 5: Display operation:
+  - Traverse level 0 (bottom level)
+  - Print all nodes in sorted order
+Step 6: Menu-driven operations:
+  - Option 1: Insert with random level assignment
+  - Option 2: Search with binary search-like efficiency
+  - Option 3: Display all elements
+  - Option 4: Exit
+
+Time Complexity: O(log n) average for insertion and search
+Space Complexity: O(n) for storing n nodes with multiple levels
+`
   },
   {
     id: 24,
@@ -2890,7 +3559,48 @@ int main()
     display(root);
     return 0;
 }
-- `
+`,
+    algorithm: `Algorithm: Quad Tree - Spatial Indexing
+
+Step 1: Point structure with x, y coordinates
+Step 2: QuadTree node structure:
+  - point: stores single point (x, y)
+  - nw, ne, sw, se: pointers to four children
+    - Northwest: x < root.x, y >= root.y
+    - Northeast: x >= root.x, y >= root.y
+    - Southwest: x < root.x, y < root.y
+    - Southeast: x >= root.x, y < root.y
+Step 3: createNode(x, y):
+  - Allocate memory for new QuadTree node
+  - Store point (x, y)
+  - Initialize all children pointers to NULL
+  - Return new node
+Step 4: Insert operation:
+  - If root is NULL, create new node with (x, y)
+  - Otherwise, determine quadrant of new point relative to root:
+    - If x < root.x AND y >= root.y: insert in NW child
+    - If x >= root.x AND y >= root.y: insert in NE child
+    - If x < root.x AND y < root.y: insert in SW child
+    - If x >= root.x AND y >= root.y: insert in SE child
+  - Recursively insert in appropriate child
+  - Return root
+Step 5: Display operation:
+  - Preorder traversal of quad tree
+  - Print current point (x, y)
+  - Recursively display NW, NE, SW, SE subtrees
+Step 6: Example insertion:
+  - Insert points: (50,50), (25,75), (75,75), (20,20), (80,30)
+  - Root divides 2D space into quadrants
+  - Recursively subdivides based on relative positions
+Step 7: Applications:
+  - Spatial search (find points in region)
+  - Geographic data indexing
+  - Image compression
+  - Game collision detection
+
+Time Complexity: O(log n) average for balanced tree
+Space Complexity: O(n) for storing n points
+`
   },
   {
     id: 25,
@@ -2959,6 +3669,45 @@ int main()
     sum = query(1, 0, n - 1, l, r);
     printf("Range Sum = %d", sum);
     return 0;
-}`
+}
+`,
+    algorithm: `Algorithm: Segment Tree - Range Sum Query
+
+Step 1: Input array of n elements
+Step 2: Build Segment Tree:
+  - Call build(node=1, start=0, end=n-1)
+  - For each node:
+    - If start == end (leaf node): tree[node] = arr[start]
+    - Otherwise:
+      - Calculate mid = (start + end) / 2
+      - Recursively build left subtree: build(2*node, start, mid)
+      - Recursively build right subtree: build(2*node+1, mid+1, end)
+      - Store sum: tree[node] = tree[2*node] + tree[2*node+1]
+Step 3: Tree structure:
+  - Node at index k represents sum of range [start, end]
+  - Left child at 2*k, Right child at 2*k+1
+  - Leaf nodes represent individual array elements
+Step 4: Range Sum Query build(node, start, end, l, r):
+  - Query sum of elements from index l to r
+  - Three cases:
+    - No overlap: if r < start OR end < l, return 0
+    - Complete overlap: if l <= start AND end <= r, return tree[node]
+    - Partial overlap: 
+      - Calculate mid = (start + end) / 2
+      - Return query(left child, l, r) + query(right child, l, r)
+Step 5: Algorithm flow:
+  - Build tree once: O(n)
+  - Each query: O(log n)
+  - For each query, traverse tree from root
+  - Prune branches that don't overlap with [l, r]
+Step 6: User input:
+  - Enter array size and elements
+  - Build segment tree
+  - Enter query range [l, r]
+  - Display range sum
+
+Time Complexity: O(n) for building + O(log n) per query
+Space Complexity: O(n) for tree array
+`
   },
 ];

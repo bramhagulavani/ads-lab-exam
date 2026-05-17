@@ -15,6 +15,9 @@ build/
 .env.test.local
 .env.production.local
 
+# JSON package file
+package-lock.json
+
 # Logs
 logs
 *.log
